@@ -131,3 +131,4 @@ _.py
 front_end/.DS_Store
 front_end/css/.DS_Store
 fron_end/node_modules
+node_modules
