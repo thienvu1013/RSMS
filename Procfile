@@ -1,1 +1,1 @@
-web: uvicorn scr.main:api --host=0.0.0.0 --port=${PORT:-5000}
+web: uvicorn src.main:api --host=0.0.0.0 --port=${PORT:-5000}
