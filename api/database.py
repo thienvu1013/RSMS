@@ -33,9 +33,9 @@ class MongoConnector(DBConnector):
         # self.username = os.environ.get('USERNAME_VIP_MONGODB')
         # self.password = os.environ.get('PASSWORD_VIP_MONGODB')
 
-        self.connectionString = "mongodb+srv://%s:%s@blog.phecq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-        self.username = "bloguser"
-        self.password = "bloguser"
+        self.connectionString = os.environ.get('RSMS_CONNECTION_STRING')
+        self.username = os.environ.get('RSMS_USERNAME')
+        self.password = os.environ.get('RSMS_PASSWORD')
 
 
     def connect(self):
