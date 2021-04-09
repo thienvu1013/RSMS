@@ -16,6 +16,6 @@ RUN pip3 install -r requirements.txt
 EXPOSE 80
 EXPOSE 443
 
-CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "80", "--forwarded-allow-ips", "*"]
+CMD ["uvicorn", "src.main:api", "--host", "0.0.0.0", "--port", "80", "--forwarded-allow-ips", "*"]
 
 

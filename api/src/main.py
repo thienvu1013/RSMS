@@ -11,8 +11,8 @@ import pprint
 # parentdir = os.path.dirname(currentdir)
 # sys.path.append(parentdir)
 
-from database import InventoryOperator, CustomerOperator
-import models as models
+from .database import InventoryOperator, CustomerOperator
+from .models import *
 
 
 api = fastapi.FastAPI()
@@ -30,7 +30,7 @@ def get_search_items(
     search_term: str = Query(..., title='String to search'),
     search_criteria: str = Query(..., title='Criteria to search'),
 ):
-    search_object =models.SearchQuery(search_term=search_term, search_criteria=search_criteria)
+    search_object = SearchQuery(search_term=search_term, search_criteria=search_criteria)
     operator = InventoryOperator()
     cursor = operator.get_search_result(search_object)
     return {'results':list(cursor)}
@@ -40,7 +40,7 @@ def get_search_customer(
     search_term: str = Query(..., title='String to search'),
     search_criteria: str = Query(..., title='Criteria to search'),
 ):
-    search_object =models.SearchQuery(search_term=search_term, search_criteria=search_criteria)
+    search_object =SearchQuery(search_term=search_term, search_criteria=search_criteria)
     operator = CustomerOperator()
     cursor = operator.get_search_result(search_object)
     return {'results':list(cursor)}
@@ -64,7 +64,7 @@ def delete_item(
 
 @api.post('/add/item')
 def add_item(
-    item: models.Item = Body(...)
+    item: Item = Body(...)
 ):
     operator = InventoryOperator()
     result = operator.add_item(item)
@@ -72,7 +72,7 @@ def add_item(
 
 @api.post('/add/customer')
 def add_customer(
-    customer: models.Customer = Body(...)
+    customer: Customer = Body(...)
 ):
     operator = CustomerOperator()
     result = operator.add_customer(customer)
@@ -103,7 +103,7 @@ def get_customer_details(
 
 @api.post('/edit/item')
 def edit_item(
-    item: models.Item = Body(...)
+    item: Item = Body(...)
 ):
     print(item)
     operator = InventoryOperator()
@@ -112,7 +112,7 @@ def edit_item(
 
 @api.post('/edit/customer')
 def edit_customer(
-    customer: models.Customer = Body(...)
+    customer: Customer = Body(...)
 ):
     operator = CustomerOperator()
     result = operator.edit_customer(customer)
